@@ -1,5 +1,9 @@
 import React, {FormEvent, useState} from 'react';
 
+import TodoItem from '../TodoItem/TodoItem';
+
+import './TodoList.css';
+
 function TodoList() {
     const initialItems: string[] = [];
 
@@ -14,7 +18,7 @@ function TodoList() {
 
     let listItems: JSX.Element[] = [];
     items.forEach((item, index) => {
-        listItems.push(<li key={index}>{item}</li>);
+        listItems.push(<TodoItem item={item} />);
     })
 
     return (
