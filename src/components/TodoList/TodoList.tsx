@@ -12,8 +12,8 @@ function TodoList() {
         setNewItem('');
     }
 
-    let listItems: any[] = [];
-    items.map((item, index) => {
+    let listItems: JSX.Element[] = [];
+    items.forEach((item, index) => {
         listItems.push(<li key={index}>{item}</li>);
     })
 
