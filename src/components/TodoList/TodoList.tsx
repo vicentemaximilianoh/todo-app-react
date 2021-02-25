@@ -1,24 +1,38 @@
 import React, {FormEvent, useState} from 'react';
 
-import TodoItem from '../TodoItem/TodoItem';
+import TodoItem, { ITodoItem } from '../TodoItem/TodoItem';
 
 import './TodoList.css';
 
 function TodoList() {
-    const initialItems: string[] = [];
+    const initialItems: ITodoItem[] = [];
 
-    const [newItem, setNewItem]: [string, React.Dispatch<React.SetStateAction<string>>] = useState('');
-    const [items, setItems]: [string[], React.Dispatch<React.SetStateAction<string[]>>] = useState(initialItems);
+    const [newTextItem, setNewTextItem]: [string, React.Dispatch<React.SetStateAction<string>>] = useState('');
+    const [items, setItems]: [ITodoItem[], React.Dispatch<React.SetStateAction<ITodoItem[]>>] = useState(initialItems);
 
     const onSubmit = function(e: Event) {
         e.preventDefault();
-        setItems(items.concat(newItem));
-        setNewItem('');
+
+        const newItem: ITodoItem = {
+            text: newTextItem,
+            isCompleted: false,
+            key: items.length+1
+        }
+
+        const newItems = [...items];
+        newItems.push(newItem);
+
+        setItems(newItems);
+        setNewTextItem('');
+    }
+
+    const onChangeText = function(event: Event) {
+        setNewTextItem((event.target as HTMLInputElement).value);
     }
 
     let listItems: JSX.Element[] = [];
     items.forEach((item, index) => {
-        listItems.push(<TodoItem item={item} />);
+        listItems.push(<TodoItem key={item.key} item={item} />);
     })
 
     return (
@@ -28,8 +42,9 @@ function TodoList() {
                 className="TodoList-add"
                 onSubmit={(e: any) => onSubmit(e)}>
                 <input 
-                    onChange={(e) => setNewItem(e.target.value)}
-                    value={newItem}/>
+                    onChange={(e: any) => onChangeText(e)}
+                    value={newTextItem}
+                    />
             </form>
             <ul className="TodoList-items">
                 {listItems}

@@ -2,7 +2,13 @@ import React from 'react';
 
 import './TodoItem.css';
 
-function TodoItem({item}: {item: string}) {
+export interface ITodoItem {
+    text: string,
+    isCompleted: boolean,
+    key: number
+}
+
+function TodoItem({item}: {item: ITodoItem}) {
 
     function deleteItem(item: string) {
 
@@ -10,7 +16,7 @@ function TodoItem({item}: {item: string}) {
 
     return (
         <div className="TodoItem">
-            <div className="TodoItem-text">{item}</div>
+            <div className="TodoItem-text">{item.text}</div>
             <div className="TodoItem-actions">
                 {/* <button onClick={() => deleteItem(item)}>x</button> */}
             </div>
