@@ -4,3 +4,11 @@
     width: 100%;
     justify-content: space-between;
 }
+
+.TodoItem-action-delete {
+    background: none;
+    border: none;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+}

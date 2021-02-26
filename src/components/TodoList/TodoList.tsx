@@ -1,4 +1,6 @@
-import React, {FormEvent, useState} from 'react';
+import React, { useState } from 'react';
+
+import { uniqueId } from 'lodash';
 
 import TodoItem, { ITodoItem } from '../TodoItem/TodoItem';
 
@@ -16,7 +18,7 @@ function TodoList() {
         const newItem: ITodoItem = {
             text: newTextItem,
             isCompleted: false,
-            key: items.length+1
+            id: uniqueId()
         }
 
         const newItems = [...items];
@@ -30,9 +32,19 @@ function TodoList() {
         setNewTextItem((event.target as HTMLInputElement).value);
     }
 
+    const onDeleteItem = function(item: ITodoItem) {
+        setItems(items.filter((itemItems) => item.id !== itemItems.id) || []);
+    }
+
     let listItems: JSX.Element[] = [];
     items.forEach((item, index) => {
-        listItems.push(<TodoItem key={item.key} item={item} />);
+        listItems.push(
+            <TodoItem 
+                key={item.id} 
+                item={item} 
+                onDeleteItem={onDeleteItem}
+                />
+        );
     })
 
     return (

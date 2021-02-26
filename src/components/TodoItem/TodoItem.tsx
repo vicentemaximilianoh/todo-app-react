@@ -5,20 +5,20 @@ import './TodoItem.css';
 export interface ITodoItem {
     text: string,
     isCompleted: boolean,
-    key: number
+    id: string
 }
 
-function TodoItem({item}: {item: ITodoItem}) {
-
-    function deleteItem(item: string) {
-
-    }
+function TodoItem({item, onDeleteItem}: {item: ITodoItem, onDeleteItem: Function}) {
 
     return (
         <div className="TodoItem">
             <div className="TodoItem-text">{item.text}</div>
             <div className="TodoItem-actions">
-                {/* <button onClick={() => deleteItem(item)}>x</button> */}
+                <button 
+                    className="TodoItem-action-delete"
+                    onClick={() => onDeleteItem(item)}>
+                    x
+                </button>
             </div>
         </div>
     );
