@@ -8,11 +8,15 @@ export interface ITodoItem {
     id: string
 }
 
-function TodoItem({item, onDeleteItem}: {item: ITodoItem, onDeleteItem: Function}) {
+function TodoItem({item, onDeleteItem, onEditItem}: {item: ITodoItem, onDeleteItem: Function, onEditItem: Function}) {
 
     return (
         <div className="TodoItem">
-            <div className="TodoItem-text">{item.text}</div>
+            <div 
+                className="TodoItem-text"
+                onClick={() => onEditItem(item)}>
+                {item.text}
+            </div>
             <div className="TodoItem-actions">
                 <button 
                     className="TodoItem-action-delete"

@@ -9,27 +9,50 @@ import './TodoList.css';
 function TodoList() {
     const initialItems: ITodoItem[] = [];
 
-    const [newTextItem, setNewTextItem]: [string, React.Dispatch<React.SetStateAction<string>>] = useState('');
-    const [items, setItems]: [ITodoItem[], React.Dispatch<React.SetStateAction<ITodoItem[]>>] = useState(initialItems);
+    const [newTextItem, setNewTextItem]: [string, React.Dispatch<React.SetStateAction<string>>] = useState<string>('');
+    const [items, setItems]: [ITodoItem[], React.Dispatch<React.SetStateAction<ITodoItem[]>>] = useState<Array<ITodoItem>>(initialItems);
+    const [selectedItem, setSelectedItem]: [ITodoItem | undefined, React.Dispatch<React.SetStateAction<ITodoItem|undefined>>] = useState<ITodoItem|undefined>();
 
     const onSubmit = function(e: Event) {
         e.preventDefault();
 
-        const newItem: ITodoItem = {
-            text: newTextItem,
-            isCompleted: false,
-            id: uniqueId()
+        if (selectedItem) {
+            selectedItem.text = newTextItem;
+            const idx = items.findIndex((it) => {
+                return it.id === selectedItem.id;
+            });
+
+            const newItems = [...items];
+            newItems[idx] = selectedItem;
+
+            setItems(newItems);
+        } else {
+
+            const newItem: ITodoItem = {
+                text: newTextItem,
+                isCompleted: false,
+                id: uniqueId()
+            }
+
+            const newItems = [...items];
+            newItems.push(newItem);
+
+            setItems(newItems);
+
         }
 
-        const newItems = [...items];
-        newItems.push(newItem);
-
-        setItems(newItems);
+        // Cleanup state
         setNewTextItem('');
+        setSelectedItem(undefined);
     }
 
     const onChangeText = function(event: Event) {
         setNewTextItem((event.target as HTMLInputElement).value);
+    }
+
+    const onEditItem = function(item: ITodoItem) {
+        setNewTextItem(item.text);
+        setSelectedItem(item);
     }
 
     const onDeleteItem = function(item: ITodoItem) {
@@ -43,6 +66,7 @@ function TodoList() {
                 key={item.id} 
                 item={item} 
                 onDeleteItem={onDeleteItem}
+                onEditItem={onEditItem}
                 />
         );
     })
