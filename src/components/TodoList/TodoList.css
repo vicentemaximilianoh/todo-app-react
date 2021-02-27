@@ -1,4 +1,18 @@
 
+.TodoList {
+    width: 50vw;
+    max-width: 50%;
+    margin: auto;
+}
+
+.TodoList-add-input {
+    width: 100%;
+    min-height: 2em;
+    padding: .25em 1em;
+    font-size: 1em;
+    outline: 0;
+}
+
 .TodoList-items {
     padding-inline-start: 0;
 }

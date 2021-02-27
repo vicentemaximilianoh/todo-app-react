@@ -5,11 +5,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   color: white;
 }
 
+.App-TodoList {
+  width: 50%;
+  margin: 0 auto;
+}
+
 .App-header {
-  font-size: calc(10px + 2vmin);
+  font-size: 2rem;
+  padding: 2rem;
 }
 

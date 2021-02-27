@@ -22,11 +22,15 @@ function TodoItem({
 
     return (
         <div className="TodoItem">
-            <input 
-                type="checkbox"
-                onClick={() => onCompleteItem(item)}/>
+            <label className="TodoItem-check">
+                <input 
+                    type="checkbox"
+                    className="TodoItem-check-input"
+                    onClick={() => onCompleteItem(item)}/>
+                <span className="TodoItem-check-mark"></span>
+            </label>
             <div
-                className={item.isCompleted ? 'TodoItem-completed TodoItem-text' : 'TodoItem-text'}
+                className={item.isCompleted ? 'TodoItem-text-completed TodoItem-text' : 'TodoItem-text'}
                 onClick={() => onEditItem(item)}>
                 {item.text}
             </div>

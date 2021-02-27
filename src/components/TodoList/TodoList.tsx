@@ -89,7 +89,9 @@ function TodoList() {
             <form 
                 className="TodoList-add"
                 onSubmit={(e: any) => onSubmit(e)}>
-                <input 
+                <input
+                    placeholder="Something to do..."
+                    className="TodoList-add-input"
                     onChange={(e: any) => onChangeText(e)}
                     value={newTextItem}
                     />
