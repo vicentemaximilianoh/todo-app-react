@@ -86,7 +86,6 @@ function TodoList() {
 
     return (
         <div className="TodoList">
-            <div className="TodoList-title">Todo List</div>
             <form 
                 className="TodoList-add"
                 onSubmit={(e: any) => onSubmit(e)}>

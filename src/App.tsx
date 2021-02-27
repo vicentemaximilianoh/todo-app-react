@@ -7,9 +7,10 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header">Todo List</header>
+      <main className="App-TodoList">
         <TodoList></TodoList>
-      </header>
+      </main>
     </div>
   );
 }
