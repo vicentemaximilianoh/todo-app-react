@@ -1,0 +1,19 @@
+
+.TodoFilter {
+    padding-bottom: .5em;
+}
+.TodoFilter-button {
+    font-size: 1em;
+    padding: .5em .75em;
+    margin-right: .5em;
+    margin-bottom: .5em;
+    background-color: white;
+    border: 0;
+    cursor: pointer;
+}
+
+.TodoFilter-button-active {
+    background-color: greenyellow;
+    color: black;
+    outline: 0;
+}

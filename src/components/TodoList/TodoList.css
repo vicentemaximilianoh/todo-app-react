@@ -1,14 +1,12 @@
 
 .TodoList {
-    width: 50vw;
-    max-width: 50%;
     margin: auto;
 }
 
 .TodoList-add-input {
     width: 100%;
     min-height: 2em;
-    padding: .25em 1em;
+    padding: .25em 0em;
     font-size: 1em;
     outline: 0;
 }

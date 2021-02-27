@@ -25,9 +25,9 @@ function TodoItem({
             <label className="TodoItem-check">
                 <input 
                     type="checkbox"
+                    checked={item.isCompleted}
                     className="TodoItem-check-input"
                     onClick={() => onCompleteItem(item)}/>
-                <span className="TodoItem-check-mark"></span>
             </label>
             <div
                 className={item.isCompleted ? 'TodoItem-text-completed TodoItem-text' : 'TodoItem-text'}
