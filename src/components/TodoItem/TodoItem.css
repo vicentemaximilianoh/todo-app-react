@@ -12,3 +12,7 @@
     font-size: large;
     cursor: pointer;
 }
+
+.TodoItem-completed {
+    text-decoration-line: line-through;
+}

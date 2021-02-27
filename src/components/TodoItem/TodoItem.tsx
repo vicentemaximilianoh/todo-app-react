@@ -8,12 +8,25 @@ export interface ITodoItem {
     id: string
 }
 
-function TodoItem({item, onDeleteItem, onEditItem}: {item: ITodoItem, onDeleteItem: Function, onEditItem: Function}) {
+function TodoItem({
+        item, 
+        onDeleteItem, 
+        onEditItem, 
+        onCompleteItem
+    }: {
+        item: ITodoItem, 
+        onDeleteItem: Function, 
+        onEditItem: Function, 
+        onCompleteItem: Function
+    }) {
 
     return (
         <div className="TodoItem">
-            <div 
-                className="TodoItem-text"
+            <input 
+                type="checkbox"
+                onClick={() => onCompleteItem(item)}/>
+            <div
+                className={item.isCompleted ? 'TodoItem-completed TodoItem-text' : 'TodoItem-text'}
                 onClick={() => onEditItem(item)}>
                 {item.text}
             </div>

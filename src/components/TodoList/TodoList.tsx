@@ -59,12 +59,25 @@ function TodoList() {
         setItems(items.filter((itemItems) => item.id !== itemItems.id) || []);
     }
 
+    const onCompleteItem = function(item: ITodoItem) {
+        item.isCompleted = !item.isCompleted;
+        const idx = items.findIndex((it) => {
+            return it.id === item.id;
+        });
+
+        const newItems = [...items];
+        newItems[idx] = item;
+
+        setItems(newItems);
+    }
+
     let listItems: JSX.Element[] = [];
     items.forEach((item, index) => {
         listItems.push(
             <TodoItem 
                 key={item.id} 
-                item={item} 
+                item={item}
+                onCompleteItem={onCompleteItem}
                 onDeleteItem={onDeleteItem}
                 onEditItem={onEditItem}
                 />
